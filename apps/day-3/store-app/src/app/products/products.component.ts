@@ -32,24 +32,12 @@ export class ProductsComponent {
     }
   ];
 
-  newProduct: Product = new Product();
+  onProductDeleted(productId: number) {
+    this.products = this.products.filter(p => p.id !== productId);
+  }
 
-  showMessage = false;
-
-  onSubmit() {
-    this.newProduct.id = Date.now();
-    this.products.unshift(this.newProduct);
-    this.newProduct = new Product();
-    this.showMessage = true;
-    // let obj = this;
-
-    // setTimeout(function () {
-    //   obj.showMessage = false;
-    // }, 3000);
-
-    setTimeout(() => {
-      this.showMessage = false;
-    }, 3000);
+  onProductCreated(newProduct: Product) {
+    this.products.unshift(newProduct);
   }
 
 }
