@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import { Product } from '../models/product';
+import { LoggerService } from '../services/logger.service';
+import { ProductsService } from '../services/products.service';
 
 @Component({
   selector: 'app-products',
@@ -8,35 +10,24 @@ import { Product } from '../models/product';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent {
-  products: Product[] = [
-    {
-      id: 1,
-      name: 'Dell Inspiron',
-      description: 'A product from Dell for office use',
-      price: 35000,
-      isAvailable: true
-    },
-    {
-      id: 2,
-      name: 'Dell Latitude',
-      description: 'A product from Dell for home use',
-      price: 45000,
-      isAvailable: false
-    },
-    {
-      id: 3,
-      name: 'Dell XPS',
-      description: 'A product from Dell for gaming use',
-      price: 80000,
-      isAvailable: true
-    }
-  ];
+  searchText = '';
+
+  products: Product[] = [];
+
+  constructor(
+    private loggerService: LoggerService,
+    private productsService: ProductsService
+  ) {
+    this.products = this.productsService.getProducts();
+  }
 
   onProductDeleted(productId: number) {
     this.products = this.products.filter(p => p.id !== productId);
   }
 
   onProductCreated(newProduct: Product) {
+    this.loggerService.log('Product added to the array');
+
     this.products.unshift(newProduct);
   }
 

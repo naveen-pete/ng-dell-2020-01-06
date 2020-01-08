@@ -1,5 +1,8 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+
 import { Product } from '../models/product';
+import { LoggerService } from '../services/logger.service';
+import { ProductsService } from '../services/products.service';
 
 @Component({
   selector: 'app-product-form',
@@ -11,14 +14,20 @@ export class ProductFormComponent implements OnInit {
   showMessage = false;
   @Output() productCreated = new EventEmitter<Product>();
 
-  constructor() { }
+  constructor(
+    private loggerService: LoggerService,
+    private productsService: ProductsService
+  ) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
+    this.loggerService.log('Product data submitted');
+
     this.newProduct.id = Date.now();
-    this.productCreated.emit(this.newProduct);
+    // this.productCreated.emit(this.newProduct);
+    this.productsService.addProduct(this.newProduct);
     this.newProduct = new Product();
     this.showMessage = true;
 

@@ -4,7 +4,9 @@
   </div>
   <div class="col-sm-8">
     <h4>Products</h4>
-    <app-product-detail [product]="p" *ngFor="let p of products" (productDeleted)="onProductDeleted($event)">
+    <input type="text" class="form-control mb-3" placeholder="search..." [(ngModel)]="searchText">
+    <app-product-detail [product]="p" *ngFor="let p of products | searchProducts : searchText : 'name'"
+      (productDeleted)="onProductDeleted($event)">
     </app-product-detail>
   </div>
 </div>
