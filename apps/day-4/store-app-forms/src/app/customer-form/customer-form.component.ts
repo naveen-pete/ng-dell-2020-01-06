@@ -17,11 +17,10 @@ export class CustomerFormComponent implements OnInit {
   form: FormGroup;
   showMessage = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    // this.createForm();
-    // this.createFormWithFormBuilder();
+    this.createFormWithFormBuilder();
   }
 
   // Create form using FormGroup & FormControl
@@ -81,13 +80,7 @@ export class CustomerFormComponent implements OnInit {
   }
 
   onSave() {
-    // Forcing the form into error state
-    // let savedSuccessfully = this.customersService.saveCustomer(this.form.value);
-    // if(!savedSuccessfully) {
-    this.form.setErrors({
-      invalidCustomer: true
-    });
-    // }
-    console.log(this.form);
+    console.log(this.form.value);
+    // this.form.reset();
   }
 }

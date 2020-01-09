@@ -7,13 +7,33 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
+  @ViewChild('f', { static: false }) form: NgForm;
   showMessage = false;
+
+  product: Product = {
+    id: 1,
+    name: 'p100',
+    description: 'p100 desc',
+    price: 20000,
+    isAvailable: true
+  };
+
   constructor() { }
 
   ngOnInit() { }
 
-  onSubmit(form) {
+  onSubmit() {
     console.log('product information submitted.');
-    console.log(form);
+    console.log(this.form.value);
+    this.form.reset();
   }
 }
+
+class Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  isAvailable: boolean
+}
+

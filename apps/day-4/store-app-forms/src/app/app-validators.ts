@@ -3,8 +3,8 @@ import { AbstractControl, ValidationErrors } from "@angular/forms";
 export class AppValidators {
     // Custom validator
     static cannotContainSpace(control: AbstractControl): ValidationErrors | null {
-        console.log(control.value);
-        if((control.value as string).indexOf(' ') >= 0) {
+        console.log('value:', control.value);
+        if ((control.value as string).indexOf(' ') >= 0) {
             return {
                 cannotContainSpace: true
             };
@@ -14,17 +14,17 @@ export class AppValidators {
     }
 
     // Async validator
-    static shouldBeUnique(control: AbstractControl): 
+    static shouldBeUnique(control: AbstractControl):
         Promise<ValidationErrors | null> {
         return new Promise(
             (resolve, reject) => {
                 setTimeout(() => {
-                    if(control.value === 'naveen')
-                        resolve({ shouldBeUnique: true});
+                    if (control.value === 'naveen')
+                        resolve({ shouldBeUnique: true });
                     else
                         resolve(null);
-                }, 2000);
+                }, 4000);
             }
         );
-    } 
+    }
 }
