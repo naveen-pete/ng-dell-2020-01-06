@@ -11,4 +11,9 @@ export class ProductFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
+
+  onSubmit(form) {
+    console.log('product information submitted.');
+    console.log(form);
+  }
 }

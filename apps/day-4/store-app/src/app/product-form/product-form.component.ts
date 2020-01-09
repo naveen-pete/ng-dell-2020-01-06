@@ -12,7 +12,6 @@ import { ProductsService } from '../services/products.service';
 export class ProductFormComponent implements OnInit {
   newProduct: Product = new Product();
   showMessage = false;
-  @Output() productCreated = new EventEmitter<Product>();
 
   constructor(
     private loggerService: LoggerService,
@@ -26,7 +25,6 @@ export class ProductFormComponent implements OnInit {
     this.loggerService.log('Product data submitted');
 
     this.newProduct.id = Date.now();
-    // this.productCreated.emit(this.newProduct);
     this.productsService.addProduct(this.newProduct);
     this.newProduct = new Product();
     this.showMessage = true;

@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Product } from '../models/product';
 
 @Injectable()
 export class ProductsService {
+  productCreated = new EventEmitter<Product>();
+
   products: Product[] = [
     {
       id: 1,
@@ -33,6 +35,7 @@ export class ProductsService {
 
   addProduct(product: Product) {
     this.products.unshift(product);
+    this.productCreated.emit(product);
   }
 
 }
