@@ -4,6 +4,5 @@ import { Injectable } from '@angular/core';
 export class LoggerService {
   log(message: any) {
     console.log('Logger.log():', message);
-    // code that access the server
   }
 }

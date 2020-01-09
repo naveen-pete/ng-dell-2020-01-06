@@ -28,13 +28,11 @@ export class ProductsService {
   ];
 
   getProducts(): Product[] {
-    console.log('ProductsService.getProducts() invoked');
     return this.products;
   }
 
   addProduct(product: Product) {
     this.products.unshift(product);
-    console.log('ProductsService.addProduct() invoked');
   }
 
 }
