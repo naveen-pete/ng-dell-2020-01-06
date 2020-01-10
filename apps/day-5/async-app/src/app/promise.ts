@@ -2,7 +2,7 @@ import { users, posts } from './data';
 
 const getUser = (userName) => {
   return new Promise((resolve, reject) => {
-    console.log('Promise implementation getUser() started.');
+    console.log('Promise implementation of getUser() started.');
     setTimeout(function () {
       const user = users.find(function (u) {
         return u.name === userName;
@@ -20,7 +20,7 @@ const getUser = (userName) => {
 
 const getPosts = (userId) => {
   return new Promise((resolve, reject) => {
-    console.log('getPosts() started.');
+    console.log('Promise implementation of getPosts() started.');
     setTimeout(() => {
       const postsForUser = posts.filter((p) => {
         return p.userId === userId;
@@ -39,17 +39,17 @@ const getPosts = (userId) => {
 export const doWork = () => {
   console.log('begin');
 
-  getUser('krish')
-  // .then((user: any) => {
-  //   console.log('user:', user);
-  //   return getPosts(user.id);
-  // })
-  // .then((posts: any) => {
-  //   console.log('posts for user:', posts);
-  // })
-  // .catch((error) => {
-  //   console.log('Error:', error);
-  // });
+  getUser('ram')
+    .then((user: any) => {
+      console.log('user:', user);
+      return getPosts(user.id);
+    })
+    .then((posts: any) => {
+      console.log('posts for user:', posts);
+    })
+    .catch((error) => {
+      console.log('Error:', error);
+    });
 
   console.log('end');
 };

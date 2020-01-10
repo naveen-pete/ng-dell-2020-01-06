@@ -1,7 +1,7 @@
 import { users, posts } from './data';
 
 const getUser = function (userName, cb) {
-  console.log('getUser() started.');
+  console.log('Callback implementation of getUser() started.');
   setTimeout(function () {
     const user = users.find(function (u) {
       return u.name === userName;
@@ -17,7 +17,7 @@ const getUser = function (userName, cb) {
 };
 
 const getPosts = (userId, cb) => {
-  console.log('getPosts() started.');
+  console.log('Callback implementation of getPosts() started.');
   setTimeout(() => {
     const postsForUser = posts.filter((p) => {
       return p.userId === userId;
