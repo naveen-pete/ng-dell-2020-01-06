@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Customer } from '../models/customer';
 import { LoggingService } from './logging.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class CustomersService {
     private customers: Customer[] = [
         { id: 1, name: 'John', phone: '9988776655', email: 'john@abc.xyz', city: 'Bengaluru' },
@@ -12,7 +14,7 @@ export class CustomersService {
         { id: 4, name: 'Amar', phone: '2244668800', email: 'amar@abc.xyz', city: 'New Delhi' }
     ];
 
-    constructor(private loggingService: LoggingService) {}
+    constructor(private loggingService: LoggingService) { }
 
     getCustomers(): Customer[] {
         return this.customers;
@@ -24,7 +26,7 @@ export class CustomersService {
             customer => customer.id === id
         )
 
-        return customer; 
+        return customer;
     }
 
     addCustomer(customer: Customer) {
@@ -41,7 +43,7 @@ export class CustomersService {
     private generateId(): number {
         let id = 1;
         let lastItemIndex = this.customers.length - 1;
-        if(lastItemIndex > -1) {
+        if (lastItemIndex > -1) {
             id = this.customers[lastItemIndex].id + 1;
         }
         return id;
@@ -50,7 +52,7 @@ export class CustomersService {
     updatecustomer(id: number, customerInfo: Customer) {
         const customer = this.getCustomer(id);
 
-        if(customer) {
+        if (customer) {
             customer.name = customerInfo.name;
             customer.email = customerInfo.email;
             customer.phone = customerInfo.phone;
@@ -63,7 +65,7 @@ export class CustomersService {
             customer => customer.id === id
         )
 
-        if(index >= 0) {
+        if (index >= 0) {
             this.customers.splice(index, 1);
         }
     }

@@ -23,9 +23,9 @@ import { CustomerDetailComponent } from './customers/customer-detail/customer-de
 import { CustomerFormComponent } from './customers/customer-form/customer-form.component';
 
 // Services
-import { LoggingService } from './services/logging.service';
-import { ProductsService } from './services/products.service';
-import { CustomersService } from './services/customers.service';
+// import { LoggingService } from './services/logging.service';
+// import { ProductsService } from './services/products.service';
+// import { CustomersService } from './services/customers.service';
 
 
 // http://localhost:4200/app1
@@ -36,9 +36,15 @@ import { CustomersService } from './services/customers.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'products', component: ProductsComponent },
-  { path: 'products/:id', component: ProductDetailComponent },
+  {
+    path: 'products', component: ProductsComponent, children: [
+      { path: ':id', component: ProductDetailComponent },
+      { path: ':id/edit', component: ProductFormComponent },
+    ]
+  },
   { path: 'customers', component: CustomersComponent },
+  // { path: '**', component: NotFoundComponent }
+  { path: '**', redirectTo: '' }
 
 ];
 
@@ -65,7 +71,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [LoggingService, ProductsService, CustomersService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

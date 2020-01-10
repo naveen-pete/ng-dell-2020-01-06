@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
 import { LoggingService } from './logging.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ProductsService {
     private products: Product[] = [
         { id: 1, name: 'Data Structures and Algorithms', description: 'An ideal book for first course on data structures and algorithms, its text ensures a style and content relevant to present-day programming.', isAvailable: true, price: 285 },
@@ -11,7 +13,7 @@ export class ProductsService {
         { id: 3, name: 'Bahubali', description: 'Raised in a remote tribal village, Shivudu grows up a carefree young man who relentlessly pursues his heart\'s desire.', isAvailable: true, price: 268 }
     ];
 
-    constructor(private loggingService: LoggingService) {}
+    constructor(private loggingService: LoggingService) { }
 
     getProducts(): Product[] {
         return this.products;
@@ -23,7 +25,7 @@ export class ProductsService {
         const product = this.products.find(
             product => product.id === id
         )
-        return product; 
+        return product;
     }
 
     addProduct(product: Product) {
@@ -40,7 +42,7 @@ export class ProductsService {
     private generateId(): number {
         let id = 1;
         let lastItemIndex = this.products.length - 1;
-        if(lastItemIndex > -1) {
+        if (lastItemIndex > -1) {
             id = this.products[lastItemIndex].id + 1;
         }
         return id;
@@ -49,7 +51,7 @@ export class ProductsService {
     updateProduct(id: number, productInfo: Product) {
         const product = this.getProduct(id);
 
-        if(product) {
+        if (product) {
             product.name = productInfo.name;
             product.description = productInfo.description;
             product.isAvailable = productInfo.isAvailable;
@@ -62,7 +64,7 @@ export class ProductsService {
             product => product.id === id
         )
 
-        if(index >= 0) {
+        if (index >= 0) {
             this.products.splice(index, 1);
         }
     }
