@@ -13,13 +13,6 @@
       "description": "Laptops with the right balance of business features and outstanding support for small business",
       "price": 31190,
       "isAvailable": false
-    },
-    {
-      "id": 3,
-      "name": "DELL XPS 9370 13.3-inch FHD Laptop",
-      "description": "XPS For the ultimate experience Laptops with exceptional build quality, powerful features with manageability and security options",
-      "price": 98990,
-      "isAvailable": true
     }
   ],
   "users": [

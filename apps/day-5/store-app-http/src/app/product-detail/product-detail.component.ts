@@ -17,16 +17,20 @@ export class ProductDetailComponent implements OnInit {
     private service: ProductsService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.id = +params['id'];
-      const p = this.service.getProduct(this.id);
-
-      if (p) {
-        Object.assign(this.product, p);
-      }
+    this.route.paramMap.subscribe(map => {
+      this.id = +map.get('id');
+      this.service.getProduct(this.id).subscribe(
+        (product: Product) => {
+          this.product = product;
+        },
+        (error) => {
+          console.log('Get product failed.');
+          console.log('Error:', error);
+        }
+      );
     });
   }
 

@@ -48,10 +48,19 @@ export class ProductFormComponent implements OnInit {
       : false;
 
     if (this.addNew) {
-      this.service.addProduct(this.product);
+      this.service.addProduct(this.product).subscribe(
+        (product: Product) => {
+          console.log('product:', product);
+          this.router.navigate(['/products']);
+        },
+        (error) => {
+          console.log('Create product failed.');
+          console.log('Error:', error);
+        }
+      );
     } else {
       this.service.updateProduct(this.id, this.product);
     }
-    this.router.navigate(['/products']);
+
   }
 }
